@@ -3,10 +3,19 @@ import React, { useState } from "react";
 function BirdSpottingForm() {
   const initialBirdState = {
     species: "",
+    notes: "",
     rarity: "common",
     spottedAt: new Date().toISOString()
   };
   const [spottedBird, setSpottedBird] = useState(initialBirdState);
+  const [spottedBirds, setSpottedBirds] = React.useState(
+    JSON.parse(localStorage.getItem("spottedBirds")) || []
+  );
+  React.useEffect(() => {
+    if (spottedBirds.length) {
+      localStorage.setItem("spottedBirds", JSON.stringify(spottedBirds));
+    }
+  }, [spottedBirds]);
 
   const handleChange = event => {
     event.persist();
@@ -18,7 +27,7 @@ function BirdSpottingForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    console.log(spottedBird);
+    setSpottedBirds([...spottedBirds, spottedBird]);
   };
 
   return (
@@ -33,6 +42,16 @@ function BirdSpottingForm() {
             onChange={handleChange}
           />
         </label>
+        <div>
+          <label>
+            Notes:
+            <textarea
+              name="notes"
+              value={spottedBird.notes}
+              onChange={handleChange}
+            />
+          </label>
+        </div>
       </div>
       <div>
         <label>
