@@ -3,9 +3,11 @@ import "./App.css";
 import NewSpotting from "./NewSpotting";
 import BirdTable from "./BirdTable";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Moment from "moment";
 
 function App() {
-  let spottedBirds = JSON.parse(localStorage.getItem("spottedBirds")) || [];
+  let spottedBirds = [];
+  spottedBirds = JSON.parse(localStorage.getItem("spottedBirds")) || [];
 
   const columns = React.useMemo(
     () => [
@@ -23,7 +25,9 @@ function App() {
       },
       {
         Header: "Spotting time",
-        accessor: "spottedAt"
+        accessor: d => {
+          return Moment(d.spottedAt).format("DD.MM.YYYY hh:mm:ss");
+        }
       }
     ],
     []

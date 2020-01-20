@@ -7,13 +7,13 @@ function NewSpotting(props) {
     species: "",
     notes: "",
     rarity: "common",
-    spottedAt: new Date().toISOString()
+    spottedAt: new Date().toUTCString()
   };
 
   const [spottedBird, setSpottedBird] = useState(initialBirdState);
 
   const saveSpottings = () => {
-    props.spottedBirds.push(spottedBird);
+    props.spottedBirds.unshift(spottedBird);
     localStorage.setItem("spottedBirds", JSON.stringify(props.spottedBirds));
   };
 
