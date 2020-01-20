@@ -1,21 +1,21 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 
-function BirdSpottingForm() {
+function NewSpotting(props) {
+  const history = useHistory();
   const initialBirdState = {
     species: "",
     notes: "",
     rarity: "common",
     spottedAt: new Date().toISOString()
   };
+
   const [spottedBird, setSpottedBird] = useState(initialBirdState);
-  const [spottedBirds, setSpottedBirds] = React.useState(
-    JSON.parse(localStorage.getItem("spottedBirds")) || []
-  );
-  React.useEffect(() => {
-    if (spottedBirds.length) {
-      localStorage.setItem("spottedBirds", JSON.stringify(spottedBirds));
-    }
-  }, [spottedBirds]);
+
+  const saveSpottings = () => {
+    props.spottedBirds.push(spottedBird);
+    localStorage.setItem("spottedBirds", JSON.stringify(props.spottedBirds));
+  };
 
   const handleChange = event => {
     event.persist();
@@ -27,7 +27,8 @@ function BirdSpottingForm() {
 
   const handleSubmit = event => {
     event.preventDefault();
-    setSpottedBirds([...spottedBirds, spottedBird]);
+    saveSpottings();
+    history.push("/");
   };
 
   return (
@@ -72,4 +73,4 @@ function BirdSpottingForm() {
     </form>
   );
 }
-export default BirdSpottingForm;
+export default NewSpotting;
