@@ -1,0 +1,36 @@
+.submitButton {
+  background-color: rgb(75, 202, 124);
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 25px;
+  cursor: pointer;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+}
+input {
+  width: 100%;
+  margin: 16px 0;
+  padding: 16px 20px;
+  border: 2px solid rgb(75, 202, 124);
+  box-sizing: border-box;
+  align-items: center;
+}
+select {
+  width: 100%;
+  margin: 16px 0;
+  padding: 16px 20px;
+  border: 2px solid rgb(75, 202, 124);
+  box-sizing: border-box;
+  align-items: center;
+}
+textarea {
+  width: 98%;
+  border: 2px solid rgb(75, 202, 124);
+  height: 120px;
+  resize: none;
+}

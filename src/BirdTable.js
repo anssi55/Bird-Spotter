@@ -1,14 +1,15 @@
 import React from "react";
-import { useTable, usePagination, useSortBy } from "react-table";
+import "./BirdTable.css";
+import { useTable, usePagination, useSortBy, useExpanded } from "react-table";
 
-function BirdTable({ columns, data }) {
+function BirdTable({ columns: userColumns, data, renderRowSubComponent }) {
   const {
     getTableProps,
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    flatColumns,
     page,
-
     canPreviousPage,
     canNextPage,
     pageOptions,
@@ -17,10 +18,11 @@ function BirdTable({ columns, data }) {
     state: { pageIndex }
   } = useTable(
     {
-      columns,
+      columns: userColumns,
       data,
-      initialState: { pageIndex: 0, pageSize: 10 }
+      initialState: { pageIndex: 0, pageSize: 5 }
     },
+    useExpanded,
 
     useSortBy,
     usePagination
@@ -52,29 +54,41 @@ function BirdTable({ columns, data }) {
             {page.map((row, i) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()}>
-                  {row.cells.map(cell => {
-                    return (
-                      <td
-                        {...cell.getCellProps({
-                          className: cell.column.collapse ? "collapse" : ""
-                        })}
-                      >
-                        {cell.render("Cell")}
+                <React.Fragment {...row.getRowProps()}>
+                  <tr>
+                    {row.cells.map(cell => {
+                      return (
+                        <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                      );
+                    })}
+                  </tr>
+
+                  {row.isExpanded ? (
+                    <tr>
+                      <td colSpan={flatColumns.length}>
+                        {renderRowSubComponent({ row })}
                       </td>
-                    );
-                  })}
-                </tr>
+                    </tr>
+                  ) : null}
+                </React.Fragment>
               );
             })}
           </tbody>
         </table>
       </div>
       <div className="pagination">
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <button
+          className="navigationButton"
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+        >
           {"<"}
         </button>{" "}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button
+          className="navigationButton"
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+        >
           {">"}
         </button>{" "}
         <span>

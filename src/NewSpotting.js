@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import "./NewSpotting.css";
 
 function NewSpotting(props) {
   const history = useHistory();
@@ -69,7 +70,7 @@ function NewSpotting(props) {
         </label>
       </div>
 
-      <input type="submit" value="Submit" />
+      <input className="submitButton" type="submit" value="Submit" />
     </form>
   );
 }

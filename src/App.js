@@ -12,13 +12,19 @@ function App() {
   const columns = React.useMemo(
     () => [
       {
+        Header: () => null,
+        id: "expander",
+        Cell: ({ row }) => (
+          <span {...row.getExpandedToggleProps()}>
+            {row.isExpanded ? "🔽" : " ℹ️ "}
+          </span>
+        )
+      },
+      {
         Header: "Species",
         accessor: "species"
       },
-      {
-        Header: "Notes",
-        accessor: "notes"
-      },
+
       {
         Header: "Rarity",
         accessor: "rarity"
@@ -28,8 +34,24 @@ function App() {
         accessor: d => {
           return Moment(d.spottedAt).format("DD.MM.YYYY hh:mm:ss");
         }
+      },
+      {
+        Header: "",
+        accessor: "notes"
       }
     ],
+    []
+  );
+  const renderRowSubComponent = React.useCallback(
+    ({ row }) => (
+      <pre
+        style={{
+          fontSize: "16px"
+        }}
+      >
+        <code>{"Notes: " + row.values.notes}</code>
+      </pre>
+    ),
     []
   );
 
@@ -38,9 +60,13 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <BirdTable columns={columns} data={spottedBirds} />
+            <BirdTable
+              columns={columns}
+              data={spottedBirds}
+              renderRowSubComponent={renderRowSubComponent}
+            />
             <Link to="/newspotting">
-              <button>New Spotting</button>
+              <button className="newSpottingButton">New Spotting</button>
             </Link>
           </Route>
           <Route path="/newspotting">
