@@ -34,10 +34,6 @@ function App() {
         accessor: d => {
           return Moment(d.spottedAt).format("DD.MM.YYYY hh:mm:ss");
         }
-      },
-      {
-        Header: "",
-        accessor: "notes"
       }
     ],
     []
@@ -49,7 +45,7 @@ function App() {
           fontSize: "16px"
         }}
       >
-        <code>{"Notes: " + row.values.notes}</code>
+        <code>{"Notes: " + row.original.notes}</code>
       </pre>
     ),
     []
@@ -60,14 +56,14 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
+            <Link to="/newspotting">
+              <button className="newSpottingButton">New Spotting</button>
+            </Link>
             <BirdTable
               columns={columns}
               data={spottedBirds}
               renderRowSubComponent={renderRowSubComponent}
             />
-            <Link to="/newspotting">
-              <button className="newSpottingButton">New Spotting</button>
-            </Link>
           </Route>
           <Route path="/newspotting">
             <NewSpotting spottedBirds={spottedBirds} />

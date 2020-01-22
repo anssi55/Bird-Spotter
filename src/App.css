@@ -38,8 +38,6 @@
   font-size: 25px;
   cursor: pointer;
   width: 100%;
-  position: absolute;
-  bottom: 0;
 }
 
 @keyframes App-logo-spin {
