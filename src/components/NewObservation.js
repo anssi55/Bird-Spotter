@@ -55,10 +55,13 @@ function NewObservation(props) {
       }
     }
   };
+  const handleCancel = event => {
+    history.push("/");
+  };
 
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form>
         <div>
           <label>
             Bird Species:
@@ -96,8 +99,14 @@ function NewObservation(props) {
             </select>
           </label>
         </div>
-
-        <input className="submitButton" type="submit" value="Submit" />
+        <div className="submitDiv">
+          <button className="cancelButton" onClick={handleCancel} type="button">
+            Cancel
+          </button>
+          <button className="submitButton" onClick={handleSubmit} type="submit">
+            Submit
+          </button>
+        </div>
       </form>
     </>
   );
