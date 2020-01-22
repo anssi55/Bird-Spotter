@@ -1,4 +1,8 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Bird Spotter app
+
+Simple browser app to save your bird observations to your browsers local storage.  
+Observations are listed latest obervation first. You can sort the observations the way you want.  
+App works also offline. Just load the page before you go offline and you are good to go!
 
 ## Prerequisites
 
