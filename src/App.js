@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
-import NewSpotting from "./NewSpotting";
-import BirdTable from "./BirdTable";
+import NewObservation from "./components/NewObservation";
+import BirdTable from "./components/BirdTable";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Moment from "moment";
 
@@ -56,8 +56,8 @@ function App() {
       <Router>
         <Switch>
           <Route exact path="/">
-            <Link to="/newspotting">
-              <button className="newSpottingButton">New Spotting</button>
+            <Link to="/newobservation">
+              <button className="newObservationButton">New Observation</button>
             </Link>
             <BirdTable
               columns={columns}
@@ -65,8 +65,8 @@ function App() {
               renderRowSubComponent={renderRowSubComponent}
             />
           </Route>
-          <Route path="/newspotting">
-            <NewSpotting spottedBirds={spottedBirds} />
+          <Route path="/newobservation">
+            <NewObservation spottedBirds={spottedBirds} />
           </Route>
         </Switch>
       </Router>

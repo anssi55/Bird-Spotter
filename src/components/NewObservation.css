@@ -14,23 +14,28 @@
 }
 input {
   width: 100%;
-  margin: 16px 0;
-  padding: 16px 20px;
+  margin-bottom: 12px;
+  padding: 6px 6px;
   border: 2px solid rgb(75, 202, 124);
   box-sizing: border-box;
   align-items: center;
 }
 select {
   width: 100%;
-  margin: 16px 0;
-  padding: 16px 20px;
+  margin-bottom: 12px;
+  padding: 16px 6px;
   border: 2px solid rgb(75, 202, 124);
   box-sizing: border-box;
   align-items: center;
 }
 textarea {
   width: 98%;
+  padding: 6px 2px;
+  margin-bottom: 12px;
   border: 2px solid rgb(75, 202, 124);
   height: 120px;
   resize: none;
+}
+.error {
+  color: rgb(233, 17, 17);
 }
