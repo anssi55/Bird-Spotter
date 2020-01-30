@@ -2,7 +2,7 @@ import React from "react";
 import "./BirdTable.css";
 import { useTable, usePagination, useSortBy, useExpanded } from "react-table";
 
-function BirdTable({ columns: userColumns, data, renderRowSubComponent }) {
+const BirdTable = ({ columns: userColumns, data, renderRowSubComponent }) => {
   const {
     getTableProps,
     getTableBodyProps,
@@ -100,6 +100,6 @@ function BirdTable({ columns: userColumns, data, renderRowSubComponent }) {
       </div>
     </>
   );
-}
+};
 
 export default BirdTable;

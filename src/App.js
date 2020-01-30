@@ -5,7 +5,7 @@ import BirdTable from "./components/BirdTable";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Moment from "moment";
 
-function App() {
+const App = () => {
   let spottedBirds = [];
   spottedBirds = JSON.parse(localStorage.getItem("spottedBirds")) || [];
 
@@ -72,6 +72,6 @@ function App() {
       </Router>
     </>
   );
-}
+};
 
 export default App;
