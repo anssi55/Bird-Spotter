@@ -10,6 +10,7 @@ import Clear from "@material-ui/icons/Clear";
 import FirstPage from "@material-ui/icons/FirstPage";
 import LastPage from "@material-ui/icons/LastPage";
 import Search from "@material-ui/icons/Search";
+import Moment from "react-moment";
 
 const tableIcons = {
   DetailPanel: forwardRef((props, ref) => (
@@ -36,7 +37,14 @@ const BirdTable = ({ birdData }) => {
           title: "Rarity",
           field: "rarity"
         },
-        { title: "Observation time", field: "spottedAt", type: "date" },
+        {
+          title: "Observation time",
+          field: "spottedAt",
+          defaultSort: "desc",
+          render: rowData => (
+            <Moment format="DD/MM/YYYY HH:mm">{rowData.spottedAt}</Moment>
+          )
+        },
         { title: "Notes", field: "notes", hidden: true }
       ]}
       data={birdData}
